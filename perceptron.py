@@ -13,8 +13,7 @@ class Perceptron(object):
         print(rgen)
 
     def fit(self, X, y):
-        #rgen = np.random.RandomState(self.random_state)
-        rgen = np.random.seed(self.random_state)
+        rgen = np.random.RandomState(self.random_state)
         self.w_ = rgen.normal(loc=0.0, scale=0.01, size=1 + X.shape[1])
         self.errors_ = []
 
@@ -46,10 +45,22 @@ def read_iris_data():
     plt.ylabel('petal length [cm]')
     plt.legend(loc='upper left')
     plt.show()
+    return X,y
 
+def training(X,y):
+
+    ppn = Perceptron(eta=0.1, n_iter=10)
+    ppn.fit(X,y)
+
+    plt.plot(range(1, len(ppn.errors_) + 1), ppn.errors_, marker='o')
+
+    plt.xlabel('Epochs')
+    plt.ylabel('Number of update')
+
+    plt.show()
 
 if __name__ == "__main__":
-    read_iris_data()
-    per = Perceptron()
-    per.fit_test([2, 3], [2, 2])
+    X,y = read_iris_data()
+    training(X,y)
+    
 
