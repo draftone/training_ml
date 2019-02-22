@@ -8,3 +8,5 @@ x = np.linspace(-10, 10, 100)
 y = np.sin(x)
 # The plot function makes a line chart of one array against another
 plt.plot(x, y, marker="x")
+
+plt.show()
